@@ -1,6 +1,6 @@
 %define lib_major       4
 %define lib_name        %mklibname xfcegui4_ %{lib_major}
-%define version		4.4.0
+%define version		4.4.1
 %define rel		1
 %define __libtoolize	/bin/true
 %define __cputoolize	/bin/true
