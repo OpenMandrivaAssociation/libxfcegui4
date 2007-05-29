@@ -4,7 +4,7 @@
 Summary:	Various GTK+ widgets for Xfce
 Name:		libxfcegui4
 Version: 	4.4.1
-Release: 	%mkrel 1
+Release: 	%mkrel 2
 License:	LGPL
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
