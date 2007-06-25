@@ -1,5 +1,6 @@
 %define major 4
 %define libname %mklibname xfcegui4_ %{major}
+%define develname %mklibname xfcegui4 -d
 
 Summary:	Various GTK+ widgets for Xfce
 Name:		libxfcegui4
@@ -17,7 +18,7 @@ BuildRequires:	libxml2-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
-Various GTK+ widgets for Xfce.
+Various GTK+ widgets for Xfce Desktop Environment.
 
 %package -n %{libname}
 Summary:	Gui libraries for Xfce
@@ -28,13 +29,15 @@ Provides:	libxfcegui4-plugins
 %description -n %{libname}
 Gui libraries for Xfce.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Libraries and header files for the %{name} library
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
-Provides:	libxfcegui4-devel
+Provides:	xfcegui-devel = %{version}-%{release}
+Provides:	libxfcegui-devel = %{version}-%{release}
+Obsoletes:	%mklibname xfcegui4_ 4 -d
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Libraries and header files for the %{name} library.
 
 %prep
@@ -42,18 +45,16 @@ Libraries and header files for the %{name} library.
 
 %build
 %configure2_5x \
-	--sysconfdir=%{_sysconfdir}/X11
+	--sysconfdir=%{_sysconfdir}/X11 \
+	--disable-static \
+	--with-x
 %make
 
 %install
 rm -rf %{buildroot}
 %makeinstall_std
 
-# remove unneeded files
-rm -f %{buildroot}/%{_libdir}/xfce4/modules/*.a
-rm -f %{buildroot}/%{_datadir}/xfce4/xfce-svg-test.svg
-rm -rf %{buildroot}/%{_datadir}/locale
-#%%find_lang %name
+%find_lang %{name}
 
 %clean
 rm -rf %{buildroot}
@@ -62,14 +63,14 @@ rm -rf %{buildroot}
 
 %postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libname}
+%files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog COPYING README
 %{_libdir}/lib*.so.%{major}*
 %{_datadir}/gtk-doc/html/libxfcegui4/*
 %{_iconsdir}/*/*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/lib*.so
 %{_libdir}/*a
