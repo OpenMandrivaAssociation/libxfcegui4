@@ -45,8 +45,7 @@ Libraries and header files for the %{name} library.
 %build
 %configure2_5x \
 	--sysconfdir=%{_sysconfdir}/X11 \
-	--disable-static \
-	--with-x
+	--disable-static
 %make
 
 %install
