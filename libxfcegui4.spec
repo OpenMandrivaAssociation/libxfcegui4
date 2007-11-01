@@ -2,11 +2,11 @@
 %define libname %mklibname xfcegui4_ %{major}
 %define develname %mklibname xfcegui4 -d
 
-Summary:	Various GTK+ widgets for Xfce
+Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.4.1
-Release: 	%mkrel 3
-License:	LGPL
+Release: 	%mkrel 4
+License:	LGPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
 Source0:	%{name}-%{version}.tar.bz2
@@ -18,16 +18,17 @@ BuildRequires:	libxml2-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
-Various GTK+ widgets for Xfce Desktop Environment.
+Various GTK+ widgets for Xfce desktop environment.
 
 %package -n %{libname}
 Summary:	Gui libraries for Xfce
 Group:		Graphical desktop/Xfce
 Obsoletes:	libxfcegui4-plugins
 Provides:	libxfcegui4-plugins
+Requires:	librsvg2
 
 %description -n %{libname}
-Gui libraries for Xfce.
+Gui libraries for Xfce desktop environment.
 
 %package -n %{develname}
 Summary:	Libraries and header files for the %{name} library
