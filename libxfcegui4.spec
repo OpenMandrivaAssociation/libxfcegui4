@@ -4,9 +4,9 @@
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
-Version: 	4.4.1
-Release: 	%mkrel 4
-License:	LGPLv2+
+Version: 	4.4.2
+Release: 	%mkrel 1
+License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
 Source0:	%{name}-%{version}.tar.bz2
@@ -46,7 +46,9 @@ Libraries and header files for the %{name} library.
 %build
 %configure2_5x \
 	--sysconfdir=%{_sysconfdir}/X11 \
-	--disable-static
+	--disable-static \
+	--enable-startup-notification
+	
 %make
 
 %install
@@ -64,13 +66,13 @@ rm -rf %{buildroot}
 
 %files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog COPYING README
 %{_libdir}/lib*.so.%{major}*
 %{_datadir}/gtk-doc/html/libxfcegui4/*
 %{_iconsdir}/*/*
 
 %files -n %{develname}
 %defattr(-,root,root)
+%doc AUTHORS ChangeLog README NEWS
 %{_libdir}/lib*.so
 %{_libdir}/*a
 %{_libdir}/pkgconfig/*.pc
