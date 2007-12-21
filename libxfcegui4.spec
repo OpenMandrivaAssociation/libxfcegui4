@@ -13,6 +13,7 @@ Source0:	%{name}-%{version}.tar.bz2
 BuildRequires:	gtk2-devel >= 2.0.6
 BuildRequires:	libxfce4util-devel >= %{version}
 BuildRequires:	startup-notification-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Various GTK+ widgets for Xfce desktop environment.
