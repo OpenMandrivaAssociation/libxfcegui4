@@ -1,11 +1,11 @@
 %define major 4
-%define libname %mklibname xfcegui4 %{major}
+%define libname %mklibname xfcegui4_ %{major}
 %define develname %mklibname xfcegui4 -d
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.4.2
-Release: 	%mkrel 4
+Release: 	%mkrel 5
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -24,6 +24,7 @@ Group:		Graphical desktop/Xfce
 Obsoletes:	libxfcegui4-plugins
 Provides:	libxfcegui4-plugins
 Requires:	librsvg2
+Obsoletes:	%mklibname xfcegui4 4
 
 %description -n %{libname}
 Gui libraries for Xfce desktop environment.
