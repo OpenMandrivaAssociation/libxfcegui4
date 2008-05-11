@@ -5,7 +5,7 @@
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.4.2
-Release: 	%mkrel 8
+Release: 	%mkrel 9
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -50,7 +50,9 @@ Libraries and header files for the %{name} library.
 
 %build
 %configure2_5x \
+%if %mdkversion < 200900
 	--sysconfdir=%{_sysconfdir}/X11 \
+%endif
 	--disable-static \
 	--enable-startup-notification
 
