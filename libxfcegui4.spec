@@ -16,6 +16,8 @@ Patch1:		%{name}-4.4.2-use-thunar.patch
 BuildRequires:	gtk2-devel >= 2.0.6
 BuildRequires:	libxfce4util-devel >= %{version}
 BuildRequires:	startup-notification-devel
+BuildRequires:	gettext-devel
+BuildRequires:	xfce4-dev-tools
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -36,6 +38,7 @@ Gui libraries for Xfce desktop environment.
 Summary:	Libraries and header files for the %{name} library
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
+Requires:	xfce4-dev-tools
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	libxfce4gui-devel = %{version}-%{release}
 Obsoletes:	%mklibname xfcegui4_ 4 -d
@@ -49,6 +52,9 @@ Libraries and header files for the %{name} library.
 %patch1 -p1 -b .thunar
 
 %build
+# (tpg) this is a realy bad fix for underlinking ;)
+export PLATFORM_CFLAGS="-lm"
+
 %configure2_5x \
 %if %mdkversion < 200900
 	--sysconfdir=%{_sysconfdir}/X11 \
