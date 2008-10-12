@@ -5,7 +5,7 @@
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.4.2
-Release: 	%mkrel 10
+Release: 	%mkrel 11
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -13,6 +13,7 @@ Source0:	%{name}-%{version}.tar.bz2
 #(tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3614
 Patch0:		%{name}-4.4.2-extension-strip.patch
 Patch1:		%{name}-4.4.2-use-thunar.patch
+Patch2:		%{name}-4.4.2-fix-underlinking.patch
 BuildRequires:	gtk2-devel >= 2.0.6
 BuildRequires:	libxfce4util-devel >= %{version}
 BuildRequires:	startup-notification-devel
@@ -50,10 +51,11 @@ Libraries and header files for the %{name} library.
 %setup -q
 %patch0 -p1 -b .icons
 %patch1 -p1 -b .thunar
+%patch2 -p1
 
 %build
-# (tpg) this is a realy bad fix for underlinking ;)
-export PLATFORM_CFLAGS="-lm"
+# (tpg) needed for patch 2
+NOCONFIGURE=1 xdt-autogen
 
 %configure2_5x \
 %if %mdkversion < 200900
