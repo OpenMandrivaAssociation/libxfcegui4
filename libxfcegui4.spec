@@ -5,7 +5,7 @@
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.5.91
-Release: 	%mkrel 1
+Release: 	%mkrel 2
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -20,6 +20,7 @@ BuildRequires:	startup-notification-devel
 BuildRequires:	gettext-devel
 BuildRequires:	xfce4-dev-tools
 BuildRequires:	libglade2-devel
+BuildRequires:	glade3-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -41,6 +42,8 @@ Summary:	Libraries and header files for the %{name} library
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
 Requires:	xfce4-dev-tools
+Requires:	libglade2-devel
+Requires:	glade3-devel
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	libxfce4gui-devel = %{version}-%{release}
 Obsoletes:	%mklibname xfcegui4_ 4 -d
@@ -90,6 +93,11 @@ rm -rf %{buildroot}
 %{_libdir}/libglade/2.0/libxfce4.la
 %{_libdir}/libglade/2.0/libxfce4.so
 %{_iconsdir}/*/*
+%{_libdir}/glade3/modules/libgladexfce4.la
+%{_libdir}/glade3/modules/libgladexfce4.so
+%{_datadir}/glade3/catalogs/xfce4.xml
+%{_datadir}/glade3/catalogs/xfce4.xml.in
+%{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
 
 %files -n %{develname}
 %defattr(-,root,root)
