@@ -9,7 +9,7 @@ Release: 	%mkrel 1
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	http://www.xfce.org/archive/xfce-%{version}/src/%{name}-%{version}.tar.bz2
 #(tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3614
 Patch0:		%{name}-4.4.2-extension-strip.patch
 Patch1:		%{name}-4.4.2-use-thunar.patch
