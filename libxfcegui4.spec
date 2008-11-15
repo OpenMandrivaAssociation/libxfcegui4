@@ -90,6 +90,7 @@ rm -rf %{buildroot}
 
 %files -n %{libname} -f %{name}.lang
 %defattr(-,root,root)
+%exclude %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 %{_libdir}/lib*.so.%{major}*
 %{_libdir}/libglade/2.0/libxfce4.la
 %{_libdir}/libglade/2.0/libxfce4.so
