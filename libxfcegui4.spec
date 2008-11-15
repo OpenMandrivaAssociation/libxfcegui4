@@ -21,6 +21,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	xfce4-dev-tools
 BuildRequires:	libglade2-devel
 BuildRequires:	glade3-devel
+BuildRequires:	xfconf-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
