@@ -100,6 +100,7 @@ rm -rf %{buildroot}
 %{_datadir}/glade3/catalogs/xfce4.xml
 %{_datadir}/glade3/catalogs/xfce4.xml.in
 %{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
+%{_libdir}/libxfce4kbd-private.so*
 
 %files -n %{develname}
 %defattr(-,root,root)
