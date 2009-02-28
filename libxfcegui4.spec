@@ -110,4 +110,3 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/xfce4/*
 %{_datadir}/gtk-doc/html/libxfcegui4/*
-
