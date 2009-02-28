@@ -5,7 +5,7 @@
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.6.0
-Release: 	%mkrel 1
+Release: 	%mkrel 2
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -100,7 +100,7 @@ rm -rf %{buildroot}
 %{_datadir}/glade3/catalogs/xfce4.xml
 %{_datadir}/glade3/catalogs/xfce4.xml.in
 %{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
-%{_libdir}/libxfce4kbd-private.so*
+%{_libdir}/libxfce4kbd-private.so.*
 
 %files -n %{develname}
 %defattr(-,root,root)
@@ -110,3 +110,4 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/xfce4/*
 %{_datadir}/gtk-doc/html/libxfcegui4/*
+
