@@ -6,7 +6,7 @@
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version: 	4.8.1
-Release: 	%mkrel 3
+Release: 	%mkrel 4
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -20,7 +20,7 @@ BuildRequires:	libxfce4util-devel >= 4.6.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	gettext-devel
 BuildRequires:	xfce4-dev-tools >= 4.6.0
-BuildRequires:	libglade2-devel
+BuildRequires:	libglade2.0-devel
 BuildRequires:	glade3-devel
 BuildRequires:	xfconf-devel >= 4.6.0
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -44,7 +44,7 @@ Summary:	Libraries and header files for the %{name} library
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
 Requires:	xfce4-dev-tools
-Requires:	libglade2-devel
+Requires:	libglade2.0-devel
 Requires:	glade3-devel
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	libxfce4gui-devel = %{version}-%{release}
