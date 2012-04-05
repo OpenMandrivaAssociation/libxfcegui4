@@ -23,6 +23,7 @@ BuildRequires:	xfce4-dev-tools >= 4.6.0
 BuildRequires:	libglade2.0-devel
 BuildRequires:	glade3-devel
 BuildRequires:	xfconf-devel >= 4.6.0
+BuildRequires:	gtk-doc
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
