@@ -5,8 +5,8 @@
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
-Version: 	4.8.1
-Release: 	%mkrel 6
+Version:	4.8.1
+Release:	6
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -15,16 +15,16 @@ Source0:	http://archive.xfce.org/src/xfce/libxfcegui4/%{url_ver}/%{name}-%{versi
 Patch0:		%{name}-4.4.2-extension-strip.patch
 Patch1:		%{name}-4.4.2-use-thunar.patch
 Patch2:		%{name}-4.4.2-fix-underlinking.patch
+Patch3:		libxfcegui4-fix-4.10.patch
 BuildRequires:	gtk2-devel >= 2.0.6
-BuildRequires:	libxfce4util-devel >= 4.6.0
+BuildRequires:	libxfce4util-devel >= 4.9.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	gettext-devel
-BuildRequires:	xfce4-dev-tools >= 4.6.0
+BuildRequires:	xfce4-dev-tools >= 4.9.0
 BuildRequires:	libglade2.0-devel
 BuildRequires:	glade3-devel
-BuildRequires:	xfconf-devel >= 4.6.0
+BuildRequires:	xfconf-devel >= 4.9.0
 BuildRequires:	gtk-doc
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Various GTK+ widgets for Xfce desktop environment.
@@ -80,6 +80,7 @@ Libraries and header files for the %{name} library.
 %patch0 -p1 -b .icons
 %patch1 -p1 -b .thunar
 %patch2 -p1
+%patch3 -p1
 
 %build
 # (tpg) needed for patch 2
@@ -93,7 +94,6 @@ NOCONFIGURE=1 xdt-autogen
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # %{tpg} drop libtool files
@@ -101,15 +101,11 @@ find %{buildroot} -name "*.la" -delete
 
 %find_lang %{name} %{name}.lang
 
-%clean
-rm -rf %{buildroot}
-
 %files common -f %{name}.lang
 #%exclude %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 %{_iconsdir}/hicolor/*/apps/xfce*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/%{name}.so.%{major}*
 %{_libdir}/libglade/2.0/libxfce4.so
 
@@ -120,7 +116,6 @@ rm -rf %{buildroot}
 %{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
 
 %files -n %{develname}
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README NEWS
 %doc %{_datadir}/gtk-doc/html/libxfcegui4/
 %{_libdir}/%{name}.so
