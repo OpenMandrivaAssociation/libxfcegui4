@@ -5,8 +5,8 @@
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
-Version:	4.8.1
-Release:	6
+Version:	4.9.0
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
 URL:		http://www.xfce.org
@@ -102,7 +102,6 @@ find %{buildroot} -name "*.la" -delete
 %find_lang %{name} %{name}.lang
 
 %files common -f %{name}.lang
-#%exclude %{_sysconfdir}/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 %{_iconsdir}/hicolor/*/apps/xfce*
 
 %files -n %{libname}
