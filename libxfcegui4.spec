@@ -15,7 +15,6 @@ Source0:	http://archive.xfce.org/src/xfce/libxfcegui4/%{url_ver}/%{name}-%{versi
 Patch0:		%{name}-4.4.2-extension-strip.patch
 Patch1:		%{name}-4.4.2-use-thunar.patch
 Patch2:		%{name}-4.4.2-fix-underlinking.patch
-Patch3:		libxfcegui4-fix-4.10.patch
 BuildRequires:	gtk2-devel >= 2.0.6
 BuildRequires:	libxfce4util-devel >= 4.9.0
 BuildRequires:	startup-notification-devel
@@ -80,7 +79,6 @@ Libraries and header files for the %{name} library.
 %patch0 -p1 -b .icons
 %patch1 -p1 -b .thunar
 %patch2 -p1
-%patch3 -p1
 
 %build
 # (tpg) needed for patch 2
