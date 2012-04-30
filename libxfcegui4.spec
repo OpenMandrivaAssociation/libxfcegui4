@@ -5,7 +5,7 @@
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
-Version:	4.9.0
+Version:	4.10.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
@@ -16,13 +16,13 @@ Patch0:		%{name}-4.4.2-extension-strip.patch
 Patch1:		%{name}-4.4.2-use-thunar.patch
 Patch2:		%{name}-4.4.2-fix-underlinking.patch
 BuildRequires:	gtk2-devel >= 2.0.6
-BuildRequires:	libxfce4util-devel >= 4.9.0
+BuildRequires:	libxfce4util-devel >= 4.10.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	gettext-devel
-BuildRequires:	xfce4-dev-tools >= 4.9.0
+BuildRequires:	xfce4-dev-tools >= 4.10.0
 BuildRequires:	libglade2.0-devel
 BuildRequires:	glade3-devel
-BuildRequires:	xfconf-devel >= 4.9.0
+BuildRequires:	xfconf-devel >= 4.10.0
 BuildRequires:	gtk-doc
 
 %description
