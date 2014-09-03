@@ -1,80 +1,110 @@
 %define url_ver %(echo %{version} | cut -d. -f1,2)
 %define major 4
 %define libname %mklibname xfcegui4_ %{major}
-%define develname %mklibname xfcegui4 -d
+%define devname %mklibname xfcegui4 -d
 
 Summary:	Various GTK+ widgets for Xfce desktop environment
 Name:		libxfcegui4
 Version:	4.10.0
-Release:	3
+Release:	5
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
-URL:		http://www.xfce.org
+Url:		http://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/libxfcegui4/%{url_ver}/%{name}-%{version}.tar.bz2
 #(tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3614
 Patch0:		%{name}-4.4.2-extension-strip.patch
-BuildRequires:	pkgconfig(gdk-2.0) >= 2.0.6
-BuildRequires:	pkgconfig(libxfce4util-1.0) >= 4.10.0
-BuildRequires:	pkgconfig(libstartup-notification-1.0)
-BuildRequires:	gettext-devel
-BuildRequires:	xfce4-dev-tools >= 4.10.0
-BuildRequires:	pkgconfig(libglade-2.0)
-BuildRequires:	pkgconfig(gladeui-1.0)
-BuildRequires:	pkgconfig(libxfconf-0) >= 4.10.0
+Patch1:		libxfcegui4-4.10.0-no-xfce_setenv.patch
 BuildRequires:	gtk-doc
+BuildRequires:	xfce4-dev-tools >= 4.10.0
+BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig(gdk-2.0)
+BuildRequires:	pkgconfig(gladeui-1.0)
+BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(libstartup-notification-1.0)
+BuildRequires:	pkgconfig(libxfce4util-1.0)
+BuildRequires:	pkgconfig(libxfconf-0) >= 4.10.0
+Conflicts:	%{_lib}xfcegui4_4 < 4.10.0-5
 
 %description
 Various GTK+ widgets for Xfce desktop environment.
 
+%files
+%{_libdir}/libglade/2.0/libxfce4.so
+
+#----------------------------------------------------------------------------
+
 %package -n %{libname}
 Summary:	Gui libraries for Xfce
 Group:		Graphical desktop/Xfce
-Obsoletes:	libxfcegui4-plugins < 4.5.91
-Provides:	libxfcegui4-plugins
+Provides:	libxfcegui4-plugins = %{EVRD}
 Requires:	librsvg2
-Requires:	%{name}-common = %{version}-%{release}
-Obsoletes:	%mklibname xfcegui4 4
+Requires:	%{name} >= %{EVRD}
+Requires:	%{name}-common >= %{EVRD}
 
 %description -n %{libname}
 Gui libraries for Xfce desktop environment.
+
+%files -n %{libname}
+%{_libdir}/libxfcegui4.so.%{major}*
+
+#----------------------------------------------------------------------------
 
 %package common
 Summary:	Translations for %{name}
 Group:		Graphical desktop/Xfce
 BuildArch:	noarch
-Conflicts:	%{_lib}xfcegui4_4 < 4.8.1-5
 
 %description common
 This package contains common files for %{name}.
 
-%package -n %{name}-glade
-Summary:        Glade modules for %{name}
-Group:          Graphical desktop/Xfce
-Requires:	glade3
-Conflicts:	%{_lib}xfcegui4_4 < 4.8.1-4
+%files common -f %{name}.lang
+%{_iconsdir}/hicolor/*/apps/xfce*
 
-%description -n %{name}-glade
+#----------------------------------------------------------------------------
+
+%package glade
+Summary:	Glade modules for %{name}
+Group:		Graphical desktop/Xfce
+Requires:	glade3
+
+%description glade
 This package provides a catalog for Glade which allows the use of the
 provided Xfce widgets in Glade.
 
+%files glade
+%{_libdir}/glade3/modules/libgladexfce4.so
+%{_datadir}/glade3/catalogs/xfce4.xml
+%{_datadir}/glade3/catalogs/xfce4.xml.in
+%{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
 
-%package -n %{develname}
+#----------------------------------------------------------------------------
+
+%package -n %{devname}
 Summary:	Libraries and header files for the %{name} library
 Group:		Development/Other
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 Requires:	xfce4-dev-tools
-Requires:	libglade2.0-devel
-Requires:	glade3-devel
-Provides:	%{name}-devel = %{version}-%{release}
-Provides:	libxfce4gui-devel = %{version}-%{release}
-Obsoletes:	%mklibname xfcegui4_ 4 -d
+Requires:	pkgconfig(gladeui-1.0)
+Requires:	pkgconfig(libglade-2.0)
+Provides:	%{name}-devel = %{EVRD}
+Provides:	libxfce4gui-devel = %{EVRD}
 
-%description -n %{develname}
+%description -n %{devname}
 Libraries and header files for the %{name} library.
+
+%files -n %{devname}
+%doc AUTHORS ChangeLog README NEWS
+%doc %{_datadir}/gtk-doc/html/libxfcegui4/
+%{_libdir}/%{name}.so
+%{_libdir}/pkgconfig/*.pc
+%{_includedir}/xfce4/*
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q
 %patch0 -p1 -b .icons
+%patch1 -p0 -b .setenv
 
 %build
 %configure2_5x \
@@ -87,27 +117,4 @@ Libraries and header files for the %{name} library.
 %install
 %makeinstall_std
 
-# %{tpg} drop libtool files
-find %{buildroot} -name "*.la" -delete
-
-%find_lang %{name} %{name}.lang
-
-%files common -f %{name}.lang
-%{_iconsdir}/hicolor/*/apps/xfce*
-
-%files -n %{libname}
-%{_libdir}/%{name}.so.%{major}*
-%{_libdir}/libglade/2.0/libxfce4.so
-
-%files -n %{name}-glade
-%{_libdir}/glade3/modules/libgladexfce4.so
-%{_datadir}/glade3/catalogs/xfce4.xml
-%{_datadir}/glade3/catalogs/xfce4.xml.in
-%{_datadir}/glade3/pixmaps/hicolor/*/actions/*.png
-
-%files -n %{develname}
-%doc AUTHORS ChangeLog README NEWS
-%doc %{_datadir}/gtk-doc/html/libxfcegui4/
-%{_libdir}/%{name}.so
-%{_libdir}/pkgconfig/*.pc
-%{_includedir}/xfce4/*
+%find_lang %{name}
