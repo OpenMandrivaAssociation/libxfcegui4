@@ -9,7 +9,7 @@ Version:	4.10.0
 Release:	10
 License:	GPLv2+
 Group:		Graphical desktop/Xfce
-Url:		http://www.xfce.org
+Url:		https://www.xfce.org
 Source0:	http://archive.xfce.org/src/xfce/libxfcegui4/%{url_ver}/%{name}-%{version}.tar.bz2
 #(tpg) http://bugzilla.xfce.org/show_bug.cgi?id=3614
 Patch0:		%{name}-4.4.2-extension-strip.patch
